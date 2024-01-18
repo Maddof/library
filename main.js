@@ -2,12 +2,12 @@ const myLibrary = [
   {
     title: "The Hobbit",
     author: "J.R.R Tolkien",
-    status: "not read",
+    status: "Not read",
   },
   {
     title: "When the Moon Hatched",
     author: "Sarah A. Parker",
-    status: "read",
+    status: "Read",
   },
   {
     title: "The Book of Bill",
@@ -15,16 +15,6 @@ const myLibrary = [
     status: "Not read",
   },
 ];
-
-// function Book(title, author, status) {
-//   this.title = title;
-//   this.author = author;
-//   this.status = status;
-// }
-
-// Book.prototype.info = function () {
-//   return `${this.title} by ${this.author}, ${this.pages} pages, ${this.status}`;
-// };
 
 function addBookToLibrary(newBookObj) {
   myLibrary.push(newBookObj);
@@ -39,8 +29,8 @@ function displayBooks() {
         <li class ="books-item" index="${i}">
             <div>${book.title}</div>
             <div>${book.author}</div>
-            <div>${book.status}</div>
-            <div><button class="delete" index="${i}" onClick="deleteBook(${i})">Delete</button></div>
+            <div><button class="status" onClick="toggleStatus(${i})" value="${book.status}">${book.status}</button></div>
+            <div><button class="delete" onClick="deleteBook(${i})">Delete</button></div>
         </li>
     `;
     bookList.insertAdjacentHTML("beforeend", htmlBook);
@@ -52,6 +42,7 @@ displayBooks();
 const form = document.querySelector(".book-form");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  // Object constructor for form
   let formData = new FormData(form);
   // output as an object
   addBookToLibrary(Object.fromEntries(formData));
@@ -61,5 +52,14 @@ form.addEventListener("submit", (e) => {
 
 function deleteBook(i) {
   myLibrary.splice(i, 1);
+  displayBooks();
+}
+
+function toggleStatus(i) {
+  if (myLibrary[i].status === "Read") {
+    myLibrary[i].status = "Not read";
+  } else {
+    myLibrary[i].status = "Read";
+  }
   displayBooks();
 }

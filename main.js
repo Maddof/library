@@ -16,6 +16,14 @@ const myLibrary = [
   },
 ];
 
+class Book {
+  constructor(title, author, status) {
+    this.title = title;
+    this.author = author;
+    this.status = status;
+  }
+}
+
 function addBookToLibrary(newBookObj) {
   myLibrary.push(newBookObj);
   displayBooks();

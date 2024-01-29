@@ -9,20 +9,9 @@ const myLibrary = [
     author: "Sarah A. Parker",
     status: "Read",
   },
-  {
-    title: "The Book of Bill",
-    author: "Alex Hirsch",
-    status: "Not read",
-  },
 ];
 
 class Book {
-  constructor(title, author, status) {
-    this.title = title;
-    this.author = author;
-    this.status = status;
-  }
-
   static displayBooks() {
     const bookList = document.querySelector(".books");
     bookList.innerHTML = "";
@@ -40,7 +29,6 @@ class Book {
   }
 
   static addBookToLibrary(newBookObj) {
-    console.log(newBookObj);
     myLibrary.push(newBookObj);
     this.displayBooks();
   }
